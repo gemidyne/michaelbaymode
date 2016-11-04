@@ -7,7 +7,7 @@ A SourceMod plugin for Team Fortress 2 which I should probably regret ever makin
 - It also changes/randomises the pitch of sounds played by the game engine.
 
 ## WARNING
-Please note that this plugin can cause extreme server and client instability if the rate of fire console variable is set too high with many players and high entity counts.
+Please note that this plugin can cause extreme server and client instability if the sm_explosions console variable is set too high with many players and high entity counts.
 
 ## Extensions required 
 - TF2 extension (bundled with SourceMod)
@@ -20,8 +20,7 @@ Please note that this plugin can cause extreme server and client instability if 
 - morecolours
 
 ## Console Variables
-- tf_awesomemod_enabled (0/1) - Default: 1 - Is AwesomeMod enabled?
-- tf_awesomemod_rof (1.0 - 100.0) - Every weapon's rate-of-fire is multiplied by this value. 
+- sm_explosions <value> - Default: 0 - Amount of Michael Bay to create. 
 
 ## License
 Licensed under the [GNU GPL License](LICENSE.md)
