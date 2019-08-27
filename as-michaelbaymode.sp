@@ -13,10 +13,10 @@ new Handle:g_PluginEnabled;
 public Plugin:myinfo = 
 {
     name = "Michael Bay Mode",
-    author = "Anarchy Steven",
-    description = "Why did I make this?",
+    author = "Gemidyne Softworks",
+    description = "",
     version = "1.0",
-    url = "http://www.gemini.software/"
+    url = "https://www.gemidyne.com/"
 };
 
 public OnPluginStart()
