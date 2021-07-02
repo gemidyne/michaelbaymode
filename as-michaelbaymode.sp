@@ -15,7 +15,7 @@ public Plugin:myinfo =
 	name = "Michael Bay Mode",
 	author = "Gemidyne Softworks",
 	description = "",
-	version = "1.0",
+	version = "1.1",
 	url = "https://www.gemidyne.com/"
 };
 
