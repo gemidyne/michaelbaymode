@@ -12,11 +12,11 @@ new Handle:g_PluginEnabled;
 
 public Plugin:myinfo = 
 {
-    name = "Michael Bay Mode",
-    author = "Gemidyne Softworks",
-    description = "",
-    version = "1.0",
-    url = "https://www.gemidyne.com/"
+	name = "Michael Bay Mode",
+	author = "Gemidyne Softworks",
+	description = "",
+	version = "1.0",
+	url = "https://www.gemidyne.com/"
 };
 
 public OnPluginStart()
@@ -72,7 +72,7 @@ public OnMapStart()
 	PrecacheSound("vo/canals/shanty_badtime.wav");
 	PrecacheSound("ambient/hell/hell_atmos.wav");
 	PrecacheSound("player/taunt_shake_it.wav");
-	
+
 	Steam_SetGameDescription("MICHAEL BAY MODE");
 
 	AddNormalSoundHook(Hook_GameSound);
@@ -132,63 +132,63 @@ stock CreateExplosion(client)
 
 		new Float:pos[3];
 		GetClientEyePosition(i, pos);
-			
+
 		new Float:distance = GetVectorDistance(vec, pos);
-			
+
 		if (distance > 600)	continue;
-			
+
 		new damage = 200; //220
 		damage = RoundToFloor(damage * (700 - distance) / 700); //600
-			
+
 		SlapPlayer(i, damage, false);
 	}
 }
 
 stock CreateParticle(client, String:effect[128], Float:time) 
 {
-    new Float:strflVec[3];
-    GetClientEyePosition(client, strflVec);
-    
-    new strIParticle = CreateEntityByName("info_particle_system");
-    new String:strName[128];
-    if (IsValidEdict(strIParticle)) {
-        new Float:strflPos[3];
-        GetEntPropVector(client, Prop_Send, "m_vecOrigin", strflPos);
-        TeleportEntity(strIParticle, strflPos, NULL_VECTOR, NULL_VECTOR);
-        
-        Format(strName, sizeof(strName), "target%i", client);
-        DispatchKeyValue(client, "targetname", strName);
-        
-        DispatchKeyValue(strIParticle, "targetname", "tf2particle");
-        DispatchKeyValue(strIParticle, "parentname", strName);
-        DispatchKeyValue(strIParticle, "effect_name", effect);
-        DispatchSpawn(strIParticle);
-        SetVariantString(strName);
-        AcceptEntityInput(strIParticle, "SetParent", strIParticle, strIParticle, 0);
-        //SetVariantString("head");
-        //AcceptEntityInput(strIParticle, "SetParentAttachment", strIParticle, strIParticle, 0);
-        ActivateEntity(strIParticle);
-        AcceptEntityInput(strIParticle, "start");
-        
-        CreateTimer(time, killprop_timer, strIParticle);
-    }
+	new Float:strflVec[3];
+	GetClientEyePosition(client, strflVec);
+
+	new strIParticle = CreateEntityByName("info_particle_system");
+	new String:strName[128];
+	if (IsValidEdict(strIParticle)) {
+		new Float:strflPos[3];
+		GetEntPropVector(client, Prop_Send, "m_vecOrigin", strflPos);
+		TeleportEntity(strIParticle, strflPos, NULL_VECTOR, NULL_VECTOR);
+
+		Format(strName, sizeof(strName), "target%i", client);
+		DispatchKeyValue(client, "targetname", strName);
+
+		DispatchKeyValue(strIParticle, "targetname", "tf2particle");
+		DispatchKeyValue(strIParticle, "parentname", strName);
+		DispatchKeyValue(strIParticle, "effect_name", effect);
+		DispatchSpawn(strIParticle);
+		SetVariantString(strName);
+		AcceptEntityInput(strIParticle, "SetParent", strIParticle, strIParticle, 0);
+		//SetVariantString("head");
+		//AcceptEntityInput(strIParticle, "SetParentAttachment", strIParticle, strIParticle, 0);
+		ActivateEntity(strIParticle);
+		AcceptEntityInput(strIParticle, "start");
+
+		CreateTimer(time, killprop_timer, strIParticle);
+	}
 }
 
 public Action:killprop_timer(Handle:hTimer, any:entity) 
 {
-    if (IsValidEntity(entity)) 
-    {
-        AcceptEntityInput(entity, "Kill");
-    }
+	if (IsValidEntity(entity)) 
+	{
+		AcceptEntityInput(entity, "Kill");
+	}
 
-    return Plugin_Stop;
+	return Plugin_Stop;
 }
 
 stock env_shake(client, Float:amplitude, Float:radius, Float:duration, Float:frequency)
 {
 	new ent = CreateEntityByName("env_shake");
 	new Float:ClientOrigin[3];
-		
+
 	if (DispatchSpawn(ent))
 	{
 		DispatchKeyValueFloat(ent, "amplitude", amplitude);
@@ -200,9 +200,9 @@ stock env_shake(client, Float:amplitude, Float:radius, Float:duration, Float:fre
 		AcceptEntityInput(ent, "AddOutput");
 
 		AcceptEntityInput(ent, "StartShake", client);
-	
+
 		GetClientAbsOrigin(client, ClientOrigin);
-		
+
 		TeleportEntity(ent, ClientOrigin, NULL_VECTOR, NULL_VECTOR);
 
 		CreateTimer(duration, killprop_timer, ent);
