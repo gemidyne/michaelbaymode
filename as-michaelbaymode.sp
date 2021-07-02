@@ -61,7 +61,7 @@ public OnMapStart()
 		PrecacheSound(buffer);
 	}
 
-		for (new i = 1; i <= 6; i++)
+	for (new i = 1; i <= 6; i++)
 	{
 		Format(buffer, PLATFORM_MAX_PATH, "ambient/dog%d.wav", i);
 		PrecacheSound(buffer);
@@ -71,7 +71,7 @@ public OnMapStart()
 	PrecacheSound("music/radio1.mp3");
 	PrecacheSound("vo/canals/shanty_badtime.wav");
 	PrecacheSound("ambient/hell/hell_atmos.wav");
-	PrecacheSound("weapons/taunt_shake_it.wav");
+	PrecacheSound("player/taunt_shake_it.wav");
 	
 	Steam_SetGameDescription("MICHAEL BAY MODE");
 
@@ -277,7 +277,7 @@ public Action:Hook_GameSound(clients[64], &numClients, String:sample[PLATFORM_MA
 	}
 	else if (StrContains(sample, "item", false) != -1)
 	{
-		Format(sample, PLATFORM_MAX_PATH, "weapons/taunt_shake_it.wav");
+		Format(sample, PLATFORM_MAX_PATH, "player/taunt_shake_it.wav");
 		return Plugin_Changed;
 	}
 
