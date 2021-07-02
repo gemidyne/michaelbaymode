@@ -177,7 +177,7 @@ stock CreateParticle(client, String:effect[128], Float:time)
 public Action:killprop_timer(Handle:hTimer, any:entity) 
 {
     if (IsValidEntity(entity)) 
-	{
+    {
         AcceptEntityInput(entity, "Kill");
     }
 
