@@ -1,0 +1,60 @@
+name: CI
+
+# Controls when the action will run.
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [dev, master]
+  pull_request:
+    branches: [dev, master]
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        smver: ["1.10.x", "1.11.x"]
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Set environment variables
+        run: echo SCRIPTS_PATH=$(pwd) >> $GITHUB_ENV
+
+      - name: Download includes
+        uses: actions/checkout@v2
+        with:
+          repository: gemidyne/gh-actions-resources
+          path: "./ext"
+
+      - name: Setup SourceMod compiler (${{ matrix.smver }})
+        uses: rumblefrog/setup-sp@master
+        with:
+          version: ${{ matrix.smver }}
+
+      - name: Copy includes
+        run: |
+          cp ./ext/sourcepawn/includes/* $includePath
+
+      - name: Compile plugin
+        run: spcomp -i $includePath as-michaelbaymode.sp -o as-michaelbaymode.smx -E -O2 -v2
+        working-directory: ${{ env.SCRIPTS_PATH }}
+
+      - name: Create artifact structure
+        run: |
+          mkdir -p rel/tf/addons/sourcemod/plugins
+          cp as-michaelbaymode.smx rel/tf/addons/sourcemod/plugins/bunnyhop.smx
+        working-directory: ${{ env.SCRIPTS_PATH }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: plugin_SM_${{ matrix.smver }}
+          path: rel/
