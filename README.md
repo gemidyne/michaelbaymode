@@ -11,7 +11,7 @@ Please note that this plugin can cause extreme server and client instability if 
 
 ## Extensions required 
 - TF2 extension (bundled with SourceMod)
-- SteamTools (for custom game description)
+- SteamWorks (for custom game description)
 
 ## Plugins required
 - None

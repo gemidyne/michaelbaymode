@@ -4,7 +4,7 @@
 #include <tf2>
 #include <tf2_stocks>
 #include <sdktools>
-#include <steamtools>
+#include <SteamWorks>
 
 #undef REQUIRE_PLUGIN
 
@@ -73,7 +73,7 @@ public OnMapStart()
 	PrecacheSound("ambient/hell/hell_atmos.wav");
 	PrecacheSound("player/taunt_shake_it.wav");
 
-	Steam_SetGameDescription("MICHAEL BAY MODE");
+	SteamWorks_SetGameDescription("MICHAEL BAY MODE");
 
 	AddNormalSoundHook(Hook_GameSound);
 }
