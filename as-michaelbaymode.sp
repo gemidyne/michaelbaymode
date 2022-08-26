@@ -108,6 +108,8 @@ public Action:TF2_CalcIsAttackCritical(client, weapon, String:weaponname[], &boo
 		Format(buffer, sizeof(buffer), "vo/npc/male01/runforyourlife0%d.wav", GetRandomInt(1, 3));
 		EmitSoundToAll(buffer, client);
 	}
+
+	return Plugin_Continue;
 }
 
 stock CreateExplosion(client)
